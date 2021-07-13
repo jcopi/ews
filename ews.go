@@ -3,7 +3,7 @@ package ews
 import (
 	"bytes"
 	"crypto/tls"
-	"fmt"
+	"log"
 	"github.com/Azure/go-ntlmssp"
 	"io/ioutil"
 	"net/http"
@@ -116,9 +116,9 @@ func logRequest(c *client, req *http.Request) {
 	if c.config != nil && c.config.Dump {
 		dump, err := httputil.DumpRequestOut(req, true)
 		if err != nil {
-			fmt.Println(err)
+			log.Print(err)
 		}
-		fmt.Printf("Request:\n%v\n----\n", string(dump))
+		log.Printf("Request:\n%v\n----\n", string(dump))
 	}
 }
 
@@ -126,8 +126,8 @@ func logResponse(c *client, resp *http.Response) {
 	if c.config != nil && c.config.Dump {
 		dump, err := httputil.DumpResponse(resp, true)
 		if err != nil {
-			fmt.Println(err)
+			log.Print(err)
 		}
-		fmt.Printf("Response:\n%v\n----\n", string(dump))
+		log.Printf("Response:\n%v\n----\n", string(dump))
 	}
 }
